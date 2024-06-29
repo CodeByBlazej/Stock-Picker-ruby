@@ -7,13 +7,30 @@ def stock_picker (prices)
   # then going from the beggining to the end pick when to buy and when to sell
   max_prices = prices.max(prices.length)
   
+  
+  prices.each_with_index do |stock_price, stock_index|
+      max_prices.each_with_index do |max_price, max_index|
+        if stock_price[stock_index] < max_price[max_index]
+          days.push(prices[stock_index])
+          break
+          # elsif stock_price > max_price
+          #   days.push(index)
+        end
+      end
+    end
+
+
+  # prices.each do |stock_price|
+  #   max_prices.each do |max_price|
+  #     if stock_price < max_price
+  #       days.push(prices.index(stock_price))
+  #       break
+  #     end
+  #   end
+  # end
+
   binding.pry
 
-#  prices.each do |price|
-#   if 
-    
-#     end
-#   end
 
 end
 
