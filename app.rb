@@ -1,24 +1,32 @@
 require 'pry-byebug'
 
 def stock_picker (prices)
-  days = []
+  daily_stock_prices = []
 
   # firstly check what is the biggest value and whats the smallest
   # then going from the beggining to the end pick when to buy and when to sell
   max_prices = prices.max(prices.length)
   
   
-  prices.each_with_index do |stock_price, stock_index|
-      max_prices.each_with_index do |max_price, max_index|
-        if stock_price[stock_index] < max_price[max_index]
-          days.push(prices[stock_index])
-          break
-          # elsif stock_price > max_price
-          #   days.push(index)
+  prices.each do |stock_price|
+      max_prices.each do |max_price|
+        if stock_price < max_price
+          break if daily_stock_prices.length > 0
+          daily_stock_prices.push(stock_price)
         end
       end
     end
 
+    if !daily_stock_prices.empty?
+      max_prices.each do |max_price|
+        prices.each do |stock_price|
+          if max_price < stock_price
+            break if daily_stock_prices.length > 1
+            daily_stock_prices.push(max_price)
+          end
+        end
+      end
+    end
 
   # prices.each do |stock_price|
   #   max_prices.each do |max_price|
