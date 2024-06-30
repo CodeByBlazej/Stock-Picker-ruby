@@ -3,8 +3,6 @@ require 'pry-byebug'
 def stock_picker (prices)
   daily_stock_prices = []
 
-  # firstly check what is the biggest value and whats the smallest
-  # then going from the beggining to the end pick when to buy and when to sell
   max_prices = prices.max(prices.length)
   
   
@@ -27,6 +25,10 @@ def stock_picker (prices)
         end
       end
     end
+
+    days = daily_stock_prices.map {|price| prices.index(price)}
+    
+    p days
 
   # prices.each do |stock_price|
   #   max_prices.each do |max_price|
